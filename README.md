@@ -9,3 +9,5 @@ From today's list, it keeps all samples 5 and 6 days old.
 Then, it compares the previous index to today's index and keeps any differences, as well as anything 5 days old today. This catches any samples 6 days old that did not appear on yesterday's list.
 
 As this was my first script for other users, it necessitated tight version control and creation of a log file.
+
+Cleanup-ASCVcsv is an accessory script that runs once a week, cleaning up the 7 day old files associated with the process. It notes this on the log. 
