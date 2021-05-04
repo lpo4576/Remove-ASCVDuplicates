@@ -11,8 +11,9 @@
 # v1.21 - Speed enhancements. $previoustxt now only contains day 6 samples. Added additional status message when export to file begins 
 #         (this was taking the longest). Added invoke-item to automatically open the output in Excel. Moved changelog to top, because, 
 #         sure. 040921
-# v1.22 - Added debug switch for outputting file to local drive when developing. Added days back subtractor and prompt when in debug mode. Added more detail to output message, specifying day 5 and 
-#         day 6 counts. Added logfile generation, with stopwatch. 041221
+# v1.22 - Added debug switch for outputting file to local drive when developing. Added days back subtractor and prompt when in debug mode. 
+#         Added more detail to output message, specifying day 5 and day 6 counts. Added logfile generation, with stopwatch. 041221
+# v1.23 - Added env:Computername to logfile. 04/26/21
 
 $debug = $false
 $stopwatch =  [system.diagnostics.stopwatch]::StartNew()
@@ -69,6 +70,7 @@ $date5 = $date.AddDays(-5)
 $date6 = $date.AddDays(-6)
 logwrite -logstring "----------------------------------------"
 Logwrite -logstring "Ran on $date, by $env:username. Day 5 was $($date5.toshortdatestring()). Day 6 was $($date6.toshortdatestring())."
+Logwrite -logstring "Ran on $env:COMPUTERNAME"
 logwrite -logstring "Old file: $($oldfile.FileName)"
 logwrite -logstring "New file: $($newfile.FileName)"
 
