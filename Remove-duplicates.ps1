@@ -19,6 +19,8 @@
 #         methods. LO 05/04/21
 #       - Changed output to place day 5 and day 6 samples in separate csvs. Adjusted output variables and summary text as such. Adjusted logwrite
 #         calls to properly interpret length of new Generic.List arrays. LO 05/05/21
+# v1.31 - Changed output directory to C:/temp to improve speed and prevent hangups when writing the file to the file server. Changed output 
+#         message to reflect. LO 05/14/21
 
 $debug = $false
 $stopwatch =  [system.diagnostics.stopwatch]::StartNew()
@@ -128,8 +130,8 @@ Write-host "Exporting to files..." -ForegroundColor Yellow
 
 $numdate = (get-date).ToString('MMddyyyy')
 if ($debug -eq $false) {
-    $outputpath5 = "\\ctsfile\public\stlouis\ascv_pull_list\Finished\$numdate day 5 ASCV.csv"
-    $outputpath6 = "\\ctsfile\public\stlouis\ascv_pull_list\Finished\$numdate new day 6 ASCV.csv"
+    $outputpath5 = "C:\temp\$numdate day 5 ASCV.csv"
+    $outputpath6 = "C:\temp\$numdate new day 6 ASCV.csv"
     }
 Else {
     $outputpath5 = "C:\Users\312127\Desktop\Testing\$numdate day 5 ASCV.csv"
@@ -142,8 +144,7 @@ Write-Host ""
 Write-Host "$duplicates duplicates from $($date6.ToShortDateString()) have been removed" -ForegroundColor Green
 Write-Host "$unique6count new samples from collection date $($date6.ToShortDateString()) have been added to '$numdate new day 6 ASCV.csv'" -ForegroundColor Green
 Write-host "$unique5count new samples from collection date $($date5.ToShortDateString()) have been added to '$numdate day 5 ASCV.csv'" -ForegroundColor Green
-#Write-host "These samples have been added to '$numdate day 5 ASCV.csv' and '$numdate new day 6 ASCV.csv'," -ForegroundColor Green
-Write-host "These files have been placed in S:\ASCV_Pull_list\Finished" -ForegroundColor Green
+Write-host "These files have been placed in C:\Temp" -ForegroundColor Green
 Write-Host ""
 
 invoke-item -Path $outputpath5
